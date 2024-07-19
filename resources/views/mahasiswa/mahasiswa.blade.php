@@ -1,39 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>DATA MAHASISWA</h1>
-    <a href="/">Ke Beranda</a>
+@extends('layout.master')
+@section('content')
 
-    <a href="/mahasiswa/tambah">Tambah Data</a>
-    <a href="/mahasiswa/cetak-pdf" target="_blank">Cetak PDF</a>
-    <table border="1" cellpadding="10px">
-        <tr>
-            <td>No</td>
-            <td>NPM</td>
-            <td>Nama</td>
-            <td>Jurusan</td>
-            <td>Aksi/Button</td>
-        </tr>
+<div class="row " style="padding-left: 25px">
+<div class="col-cl-6 col-md-6">
+    <br>
+    <a class="btn btn-success " href="/mahasiswa/tambah"><i class="fas fa-plus"></i> Tambah Data</a>
+    <a class="btn btn-primary " href="/mahasiswa/cetak-pdf" target="_blank"><i class="fas fa-print" ></i> Cetak PDF</a>
+    
+</div>
 
-        @foreach ($mahasiswa as $key => $item)
-        <tr>
-            <td>{{$key + 1}}</td>
-            <td>{{$item->npm}}</td>
-            <td>{{$item->nama}}</td>
-            <td>{{$item->jurusan}}</td>
-            <td>
-                <a href="/mahasiswa/edit/{{$item->id}}">Edit</a> |
-                <a href="/mahasiswa/delete/{{$item->id}}">Hapus</a>
-            </td>
-        </tr>
-        @endforeach
+<br><br>
 
+<div class="card mb-4">
+<div class="card-header">
+    <i class="fas fa-table me-1"></i>
+    Data mahasiswa
+</div>
+<div class="card-body">
+    <table id="datatablesSimple">
+        <thead>
+            <tr>
+                <th>No</ths>
+                <th>NPM</th>
+                <th>Nama</th>
+                <th>Jurusan</th>
+                <th>Aksi/Button</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($mahasiswa as $key => $item)
+            <tr>
+                <td>{{$key + 1}}</td>
+                <td>{{$item->npm}}</td>
+                <td>{{$item->nama}}</td>
+                <td>{{$item->jurusan}}</td>
+                <td>
+                    <a href="/mahasiswa/edit/{{$item->id}}">Edit</a> |
+                    <a href="/mahasiswa/delete/{{$item->id}}">Hapus</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
     </table>
-</body>
-</html>
+
+</div>
+</div>
+</div>
+@endsection
